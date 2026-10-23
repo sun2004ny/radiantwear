@@ -100,7 +100,7 @@ export const Navbar = () => {
               title="View Wishlist"
               aria-label="View Wishlist"
             >
-              <Heart size={20} />
+              <Heart size={18} />
               {wishlist.length > 0 && (
                 <span className="count-badge wishlist-badge">{wishlist.length}</span>
               )}
@@ -114,7 +114,7 @@ export const Navbar = () => {
               aria-label="Open Shopping Bag"
             >
               <div className="cart-icon-wrap">
-                <ShoppingBag size={19} />
+                <ShoppingBag size={18} />
                 {cartItemCount > 0 && (
                   <span className="count-badge cart-badge">{cartItemCount}</span>
                 )}

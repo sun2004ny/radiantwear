@@ -49,6 +49,16 @@ export const ShopProvider = ({ children }) => {
 
   const toggleTheme = () => {};
 
+  // Chroma RGB Gaming Theme State
+  const [chromaMode, setChromaMode] = useState(() => {
+    return localStorage.getItem('rw_chroma') || 'cyan'; // 'cyan' | 'green' | 'purple' | 'red' | 'spectrum'
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-chroma', chromaMode);
+    localStorage.setItem('rw_chroma', chromaMode);
+  }, [chromaMode]);
+
   // Currency State
   const [currency, setCurrency] = useState('INR');
   const currencyInfo = CURRENCIES[currency] || CURRENCIES.INR;

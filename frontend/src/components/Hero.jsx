@@ -130,15 +130,6 @@ export const Hero = () => {
                     <span>CHROMA ARMOR</span>
                   </button>
                 </div>
-
-                <button 
-                  className={`overdrive-btn ${neonOverdrive ? 'active' : ''}`}
-                  onClick={() => setNeonOverdrive(!neonOverdrive)}
-                  title="Toggle Holographic RGB Overclock"
-                >
-                  <Eye size={13} />
-                  <span>{neonOverdrive ? 'OVERCLOCK ON' : 'RGB GLOW'}</span>
-                </button>
               </div>
 
               {/* Real-time Chroma RGB Profile Switcher */}
