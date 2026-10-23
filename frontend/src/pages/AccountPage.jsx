@@ -50,6 +50,7 @@ export default function AccountPage() {
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [registerForm, setRegisterForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [copiedCode, setCopiedCode] = useState(null);
   const [activeProfileTab, setActiveProfileTab] = useState('orders'); // 'orders' | 'details' | 'perks'
@@ -67,6 +68,7 @@ export default function AccountPage() {
   useEffect(() => {
     setErrorMsg('');
     setShowPassword(false);
+    setShowConfirmPassword(false);
   }, [authMode]);
 
   const handleModeSwitch = (mode) => {
@@ -387,6 +389,15 @@ export default function AccountPage() {
                             onChange={(e) => setRegisterForm({ ...registerForm, password: e.target.value })}
                             className="auth-input"
                           />
+                          <button
+                            type="button"
+                            className="auth-toggle-pwd"
+                            onClick={() => setShowPassword(!showPassword)}
+                            tabIndex="-1"
+                            aria-label={showPassword ? 'Hide password' : 'Show password'}
+                          >
+                            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          </button>
                         </div>
                       </div>
 
@@ -395,13 +406,22 @@ export default function AccountPage() {
                         <div className="auth-input-wrapper">
                           <Lock size={17} className="auth-input-icon" />
                           <input
-                            type={showPassword ? 'text' : 'password'}
+                            type={showConfirmPassword ? 'text' : 'password'}
                             required
                             placeholder="Repeat password"
                             value={registerForm.confirmPassword}
                             onChange={(e) => setRegisterForm({ ...registerForm, confirmPassword: e.target.value })}
                             className="auth-input"
                           />
+                          <button
+                            type="button"
+                            className="auth-toggle-pwd"
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            tabIndex="-1"
+                            aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                          >
+                            {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          </button>
                         </div>
                       </div>
                     </div>

@@ -3587,7 +3587,7 @@
 
 .auth-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.4rem;
+  padding: 0.75rem 2.6rem 0.75rem 2.4rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--glass-border);
   border-radius: 10px;
@@ -3613,11 +3613,15 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 4px;
+  z-index: 2;
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .auth-toggle-pwd:hover {
   color: var(--accent-gold);
+  transform: scale(1.08);
 }
 
 .auth-perks-box {
