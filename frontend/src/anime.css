@@ -1,0 +1,2292 @@
+/* ==========================================================================
+   RADIANT WEARS — RETRO VAPORWAVE / 90s MECHA ANIME THEME
+   Scoped strictly to .radiant-app and .account-page-wrapper (Zero Admin Bleed)
+   ========================================================================== */
+
+/* ── 1. Scoped Design Tokens ────────────────────────────────────────────── */
+.radiant-app,
+.account-page-wrapper {
+  /* Core Dark Cyber Abyss */
+  --bg-primary: #070510;
+  --bg-secondary: #0d091e;
+  --bg-tertiary: #140f2d;
+  --bg-elevated: #1a1438;
+  --bg-card: rgba(16, 12, 34, 0.88);
+
+  /* Retro Vaporwave & 90s Mecha Neon Accents */
+  --anime-cyan: #00f0ff;
+  --anime-magenta: #ff2a85;
+  --anime-purple: #a855f7;
+  --anime-violet: #8b5cf6;
+  --anime-gold: #ffd15c;
+  --anime-amber: #ff9f1c;
+  --anime-emerald: #05ffa1;
+
+  --accent-gold: var(--anime-gold);
+  --accent-gold-hover: #ffe28a;
+  --accent-gold-glow: rgba(255, 209, 92, 0.35);
+  --accent-rose: var(--anime-magenta);
+  --accent-cyan: var(--anime-cyan);
+  --accent-emerald: var(--anime-emerald);
+
+  /* Typography */
+  --font-display: 'Orbitron', 'Space Grotesk', sans-serif;
+  --font-serif: 'Orbitron', 'Space Grotesk', serif;
+  --font-sans: 'Space Grotesk', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Glassmorphism & Cyber Borders */
+  --glass-bg: rgba(14, 10, 28, 0.78);
+  --glass-border: rgba(0, 240, 255, 0.16);
+  --glass-border-hover: rgba(255, 42, 133, 0.5);
+  --card-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 240, 255, 0.12);
+  --glow-shadow: 0 0 30px rgba(0, 240, 255, 0.35), 0 0 60px rgba(255, 42, 133, 0.2);
+
+  /* Gradients */
+  --gradient-vapor: linear-gradient(135deg, #00f0ff 0%, #a855f7 50%, #ff2a85 100%);
+  --gradient-cyber-glow: linear-gradient(90deg, #ff2a85, #00f0ff);
+  --gradient-gold: linear-gradient(135deg, #ffd15c 0%, #ff8c42 100%);
+}
+
+/* ── Real-Time Battlestation Chroma RGB Modes ── */
+[data-chroma="green"] .radiant-app,
+[data-chroma="green"].account-page-wrapper {
+  --anime-cyan: #00ff66 !important;
+  --anime-magenta: #00e676 !important;
+  --gradient-vapor: linear-gradient(135deg, #00ff66 0%, #00f0ff 100%) !important;
+  --glass-border: rgba(0, 255, 102, 0.25) !important;
+  --glass-border-hover: rgba(0, 255, 102, 0.6) !important;
+  --glow-shadow: 0 0 30px rgba(0, 255, 102, 0.4), 0 0 60px rgba(0, 240, 255, 0.25) !important;
+}
+
+[data-chroma="purple"] .radiant-app,
+[data-chroma="purple"].account-page-wrapper {
+  --anime-cyan: #a855f7 !important;
+  --anime-magenta: #f43f5e !important;
+  --gradient-vapor: linear-gradient(135deg, #a855f7 0%, #f43f5e 100%) !important;
+  --glass-border: rgba(168, 85, 247, 0.25) !important;
+  --glass-border-hover: rgba(244, 63, 94, 0.6) !important;
+  --glow-shadow: 0 0 30px rgba(168, 85, 247, 0.4), 0 0 60px rgba(244, 63, 94, 0.25) !important;
+}
+
+[data-chroma="red"] .radiant-app,
+[data-chroma="red"].account-page-wrapper {
+  --anime-cyan: #ff0055 !important;
+  --anime-magenta: #ff5400 !important;
+  --gradient-vapor: linear-gradient(135deg, #ff0055 0%, #ff5400 100%) !important;
+  --glass-border: rgba(255, 0, 85, 0.25) !important;
+  --glass-border-hover: rgba(255, 84, 0, 0.6) !important;
+  --glow-shadow: 0 0 30px rgba(255, 0, 85, 0.4), 0 0 60px rgba(255, 84, 0, 0.25) !important;
+}
+
+[data-chroma="spectrum"] .radiant-app,
+[data-chroma="spectrum"].account-page-wrapper {
+  --anime-cyan: #00f0ff;
+  --anime-magenta: #ff0055;
+  --gradient-vapor: linear-gradient(135deg, #ff0055 0%, #00ff66 50%, #00f0ff 100%) !important;
+  --glass-border: rgba(0, 240, 255, 0.3) !important;
+  --glass-border-hover: rgba(255, 0, 85, 0.6) !important;
+  --glow-shadow: 0 0 30px rgba(0, 240, 255, 0.4), 0 0 60px rgba(255, 0, 85, 0.3) !important;
+}
+
+/* Light Synthwave Mode */
+[data-theme="light"] .radiant-app,
+[data-theme="light"].account-page-wrapper,
+[data-theme="light"] .account-page-wrapper {
+  --bg-primary: #f6f3fc;
+  --bg-secondary: #eee9f9;
+  --bg-tertiary: #e3dcf4;
+  --bg-elevated: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.92);
+
+  --text-primary: #120e26;
+  --text-secondary: #584f73;
+  --text-muted: #857b9e;
+
+  --accent-gold: #c98e14;
+  --anime-cyan: #0284c7;
+  --anime-magenta: #e11d48;
+
+  --glass-border: rgba(168, 85, 247, 0.2);
+  --glass-border-hover: rgba(225, 29, 72, 0.45);
+  --card-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.12);
+}
+
+/* ── 2. CRT Scanline & Retro Cyber Grid Overlays ────────────────────────── */
+.radiant-app {
+  position: relative;
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+/* Subtle CRT Micro Scanline layer */
+.radiant-app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(10, 6, 22, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 990;
+  opacity: 0.12;
+}
+
+/* ── 3. Typography & Global Brand Identity ──────────────────────────────── */
+.radiant-app h1,
+.radiant-app h2,
+.radiant-app h3,
+.radiant-app .section-title,
+.radiant-app .hero-title,
+.account-page-wrapper h1,
+.account-page-wrapper h2,
+.account-page-wrapper h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.radiant-app .section-eyebrow,
+.radiant-app .auth-badge-pill,
+.radiant-app .badge {
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Scoped Storefront Spacing & Compact Rhythm */
+.radiant-app {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.radiant-app .section-header {
+  margin: 0 0 1.2rem 0;
+}
+
+.radiant-app .section-title {
+  font-size: 2.1rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.radiant-app .section-description {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+.radiant-app .lookbook-section {
+  padding: 2.25rem 0;
+}
+
+.radiant-app .sustainability-section {
+  padding: 2.25rem 0;
+}
+
+.radiant-app .reviews-section {
+  padding: 2.25rem 0 1.5rem;
+}
+
+.radiant-app .newsletter-section {
+  padding: 1.5rem 0 2rem;
+}
+
+.radiant-app .footer-section {
+  padding: 2.5rem 0 2rem;
+}
+
+/* ── 4. Main Navbar Enhancements ────────────────────────────────────────── */
+.radiant-app .main-navbar {
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.radiant-app .brand-logo .logo-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  background: var(--gradient-vapor);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.radiant-app .brand-logo .logo-subtitle {
+  font-family: 'Noto Sans JP', var(--font-sans);
+  color: var(--anime-magenta);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  font-size: 0.58rem;
+}
+
+.radiant-app .logo-emblem {
+  position: relative;
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.6));
+  animation: pulse-anime-glow 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-anime-glow {
+  0% { filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.5)); }
+  100% { filter: drop-shadow(0 0 14px rgba(255, 42, 133, 0.7)); }
+}
+
+.radiant-app .desktop-nav-links .nav-link {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(0.72rem, 0.78vw, 0.82rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.radiant-app .desktop-nav-links .nav-link:hover {
+  color: var(--anime-cyan);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.radiant-app .desktop-nav-links .nav-link::after {
+  background: var(--gradient-vapor);
+  box-shadow: 0 0 8px var(--anime-cyan);
+}
+
+/* Mobile Toggle Cyberpunk Button */
+.radiant-app .mobile-toggle-btn {
+  color: var(--anime-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  background: rgba(18, 14, 38, 0.85);
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+}
+
+@media (min-width: 1200px) {
+  .radiant-app .mobile-toggle-btn {
+    display: none !important;
+  }
+}
+
+.radiant-app .mobile-toggle-btn:hover {
+  border-color: var(--anime-cyan);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.5);
+  color: #ffffff;
+}
+
+/* ── 5. Cart & Auth Buttons ─────────────────────────────────────────────── */
+.radiant-app .cart-trigger-btn {
+  background: rgba(18, 14, 38, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.radiant-app .cart-trigger-btn:hover {
+  border-color: var(--anime-cyan);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.5), 0 0 30px rgba(255, 42, 133, 0.3);
+  transform: translateY(-2px);
+}
+
+.radiant-app .cart-badge {
+  background: var(--anime-magenta);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 42, 133, 0.8);
+}
+
+.radiant-app .cart-total-text {
+  color: var(--anime-cyan);
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.radiant-app .nav-auth-btn {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 42, 133, 0.12));
+  border: 1px solid var(--anime-cyan);
+  color: var(--anime-cyan);
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+  white-space: nowrap;
+}
+
+.radiant-app .nav-auth-btn:hover {
+  background: var(--gradient-vapor);
+  color: #05030a;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6), 0 0 35px rgba(255, 42, 133, 0.4);
+  transform: translateY(-2px);
+}
+
+.radiant-app .nav-profile-avatar-btn {
+  border: 2px solid var(--anime-cyan);
+  background: linear-gradient(135deg, #1b1236, #090615);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(255, 42, 133, 0.3);
+}
+
+.radiant-app .nav-profile-avatar-btn:hover {
+  border-color: var(--anime-magenta);
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.7);
+  transform: scale(1.1);
+}
+
+.radiant-app .nav-profile-initials {
+  font-family: var(--font-display);
+  color: var(--anime-cyan);
+  font-weight: 800;
+}
+
+.radiant-app .nav-profile-online-dot {
+  background: var(--anime-emerald);
+  box-shadow: 0 0 8px var(--anime-emerald);
+}
+
+/* Cyberpunk Mobile Drawer Enhancements */
+.radiant-app .mobile-menu-drawer {
+  background: rgba(10, 6, 24, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 2px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+.radiant-app .mobile-menu-title {
+  color: var(--anime-cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+  font-family: var(--font-display);
+}
+
+.radiant-app .mobile-menu-close-btn {
+  color: var(--anime-cyan);
+  transition: all 0.2s ease;
+}
+
+.radiant-app .mobile-menu-close-btn:hover {
+  color: var(--anime-magenta);
+  transform: rotate(90deg);
+}
+
+.radiant-app .mobile-nav-link {
+  color: rgba(240, 240, 255, 0.9);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.radiant-app .mobile-nav-link:hover,
+.radiant-app .mobile-nav-link:active {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--anime-cyan);
+  color: var(--anime-cyan);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  padding-left: 1.25rem;
+}
+
+.radiant-app .mobile-link-index {
+  color: var(--anime-magenta);
+  opacity: 0.8;
+  font-weight: 700;
+}
+
+.radiant-app .mobile-currency-select {
+  background: rgba(18, 14, 38, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: var(--anime-cyan);
+  padding: 0.45rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 700;
+  outline: none;
+}
+
+.radiant-app .mobile-drawer-btn {
+  border-radius: 4px;
+}
+
+.radiant-app .mobile-theme-btn {
+  background: rgba(18, 14, 38, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: var(--anime-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+}
+
+.radiant-app .mobile-theme-btn:hover {
+  background: rgba(0, 240, 255, 0.18);
+  border-color: var(--anime-cyan);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.5);
+}
+
+.radiant-app .mobile-auth-btn {
+  background: var(--gradient-vapor);
+  border: 1px solid #ffffff;
+  color: #05030a;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.radiant-app .mobile-auth-btn:hover {
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.7), 0 0 35px rgba(255, 42, 133, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── 6. Full Screen Hero Section — 90s Mecha Anime Aesthetic ───────────── */
+.radiant-app .full-screen-hero {
+  position: relative;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  padding: 2.25rem 0 1.25rem;
+  background: radial-gradient(circle at 75% 40%, rgba(255, 42, 133, 0.12) 0%, rgba(0, 240, 255, 0.08) 35%, transparent 70%);
+}
+
+.radiant-app .hero-full-container {
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.radiant-app .hero-cyber-ambience {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.radiant-app .cyber-grid-floor {
+  position: absolute;
+  bottom: 0;
+  left: -20%;
+  right: -20%;
+  height: 240px;
+  background: 
+    linear-gradient(transparent 0%, #070510 95%),
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.16) 0px, rgba(0, 240, 255, 0.16) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(0deg, rgba(255, 42, 133, 0.18) 0px, rgba(255, 42, 133, 0.18) 1px, transparent 1px, transparent 40px);
+  perspective: 450px;
+  transform-origin: bottom;
+  transform: rotateX(60deg);
+  opacity: 0.85;
+}
+
+.radiant-app .hero-stage-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 2.25rem;
+  align-items: center;
+}
+
+/* Left Column Content */
+.radiant-app .hero-content-col {
+  position: relative;
+  z-index: 12;
+}
+
+.radiant-app .hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.95rem;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid var(--anime-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--anime-cyan);
+  margin-bottom: 0.75rem;
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+}
+
+.radiant-app .live-radar-beacon {
+  width: 8px;
+  height: 8px;
+  background: var(--anime-emerald);
+  box-shadow: 0 0 10px var(--anime-emerald);
+  border-radius: 50%;
+  animation: radarPulse 1.8s infinite ease-out;
+}
+
+@keyframes radarPulse {
+  0% { transform: scale(0.9); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+  100% { transform: scale(0.9); opacity: 1; }
+}
+
+.radiant-app .hero-title {
+  font-size: 3.1rem;
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 240, 255, 0.25);
+  margin-bottom: 0.65rem;
+}
+
+.radiant-app .hero-neon-gradient {
+  background: var(--gradient-vapor);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: 0 0 35px rgba(255, 42, 133, 0.45);
+}
+
+.radiant-app .hero-subtitle {
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: rgba(230, 225, 245, 0.85);
+  max-width: 620px;
+  margin-bottom: 1.15rem;
+  border-left: 3px solid var(--anime-magenta);
+  padding-left: 1rem;
+}
+
+/* Quick Tactical Category Chips in Hero */
+.radiant-app .hero-quick-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.15rem;
+}
+
+.radiant-app .quick-chip-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--anime-cyan);
+  letter-spacing: 0.12em;
+}
+
+.radiant-app .hero-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  clip-path: polygon(5px 0%, 100% 0%, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0% 100%, 0% 5px);
+}
+
+.radiant-app .hero-chip-btn:hover {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: var(--anime-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Hero Action Buttons */
+.radiant-app .hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.radiant-app .hero-btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.radiant-app .btn-laser-glimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: skewX(-25deg);
+  animation: laserSweepBtn 3.5s infinite;
+}
+
+@keyframes laserSweepBtn {
+  0% { left: -100%; }
+  35%, 100% { left: 200%; }
+}
+
+/* Hero Metrics Bar */
+.radiant-app .hero-metrics {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-top: 0.85rem;
+  margin-top: 0.85rem;
+  border-top: 1px solid rgba(0, 240, 255, 0.18);
+}
+
+.radiant-app .metric-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(230, 225, 245, 0.9);
+}
+
+/* Right Column: Dynamic Floating Anime Character & Garment Showcase */
+.radiant-app .hero-visual-col {
+  position: relative;
+  z-index: 12;
+}
+
+.radiant-app .floating-showcase-container {
+  position: relative;
+  background: linear-gradient(145deg, rgba(22, 16, 48, 0.88), rgba(10, 6, 26, 0.94));
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.2), 0 0 70px rgba(255, 42, 133, 0.15);
+  clip-path: polygon(18px 0%, 100% 0%, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0% 100%, 0% 18px);
+  padding: 1.25rem;
+}
+
+.radiant-app .floating-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.radiant-app .mode-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(10, 6, 22, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.radiant-app .mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: 3px;
+}
+
+.radiant-app .mode-btn:hover {
+  color: #ffffff;
+}
+
+.radiant-app .mode-btn.active {
+  background: var(--anime-cyan);
+  color: #000000;
+  box-shadow: 0 0 12px var(--anime-cyan);
+}
+
+.radiant-app .overdrive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 42, 133, 0.12);
+  border: 1px solid var(--anime-magenta);
+  color: var(--anime-magenta);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: 3px;
+}
+
+.radiant-app .overdrive-btn:hover,
+.radiant-app .overdrive-btn.active {
+  background: var(--anime-magenta);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--anime-magenta);
+}
+
+/* Chroma RGB Battlestation Profile Bar */
+.radiant-app .chroma-profile-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(10, 6, 22, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+.radiant-app .chroma-title {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--anime-cyan);
+}
+
+.radiant-app .chroma-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.radiant-app .chroma-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(18, 14, 38, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(230, 225, 245, 0.8);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.radiant-app .chroma-btn:hover {
+  border-color: var(--anime-cyan);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.radiant-app .chroma-btn.active {
+  border-color: var(--anime-cyan);
+  color: #fff;
+  background: rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 12px var(--anime-cyan);
+}
+
+.radiant-app .chroma-color-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.radiant-app .dot-spectrum {
+  background: linear-gradient(135deg, #ff0055, #00ff66, #00f0ff);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+}
+
+.radiant-app .gamer-hud-bar {
+  background: rgba(14, 10, 28, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 0.5rem 0.85rem;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
+}
+
+/* Stage Viewport for Floating Cards */
+.radiant-app .floating-stage-viewport {
+  position: relative;
+  height: 420px;
+  overflow: visible;
+}
+
+/* Base Floating Card */
+.radiant-app .floating-card {
+  position: absolute;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  background: #090615;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 4 Corner Right-Angle Accents */
+.radiant-app .floating-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--anime-cyan);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.radiant-app .floating-corner.corner-tl { top: 4px; left: 4px; border-width: 2px 0 0 2px; }
+.radiant-app .floating-corner.corner-tr { top: 4px; right: 4px; border-width: 2px 2px 0 0; }
+.radiant-app .floating-corner.corner-bl { bottom: 4px; left: 4px; border-width: 0 0 2px 2px; }
+.radiant-app .floating-corner.corner-br { bottom: 4px; right: 4px; border-width: 0 2px 2px 0; }
+
+.radiant-app .floating-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.radiant-app .floating-card:hover .floating-img {
+  transform: scale(1.04);
+}
+
+/* 1. Character Card Positioning & Floating Rhythm */
+.radiant-app .floating-character-card {
+  width: 74%;
+  height: 390px;
+  top: 10px;
+  left: 5%;
+}
+
+.radiant-app .floating-character-card.card-focused {
+  z-index: 10;
+  opacity: 1;
+  animation: floatCharacter 5s ease-in-out infinite;
+  border-color: var(--anime-cyan);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 240, 255, 0.4);
+}
+
+.radiant-app .floating-character-card.card-subdued {
+  z-index: 5;
+  width: 55%;
+  height: 310px;
+  top: 40px;
+  left: 0;
+  opacity: 0.65;
+  filter: blur(1px) brightness(0.85);
+  animation: floatCharacterSubdued 6s ease-in-out infinite 0.5s;
+}
+
+/* 2. Technical Garment Card Positioning & Floating Rhythm */
+.radiant-app .floating-garment-card {
+  width: 52%;
+  height: 280px;
+  bottom: 10px;
+  right: 2%;
+  border-color: rgba(255, 42, 133, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 42, 133, 0.3);
+}
+
+.radiant-app .floating-garment-card.card-focused {
+  z-index: 10;
+  width: 78%;
+  height: 390px;
+  top: 10px;
+  right: 5%;
+  opacity: 1;
+  border-color: var(--anime-magenta);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 42, 133, 0.45);
+  animation: floatGarment 5.5s ease-in-out infinite;
+}
+
+.radiant-app .floating-garment-card.card-subdued {
+  z-index: 7;
+  opacity: 0.9;
+  animation: floatGarmentSubdued 6s ease-in-out infinite 1s;
+}
+
+/* Floating Keyframes */
+@keyframes floatCharacter {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(1deg);
+  }
+}
+
+@keyframes floatCharacterSubdued {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(0.95);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg) scale(0.95);
+  }
+}
+
+@keyframes floatGarment {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-1.5deg);
+  }
+}
+
+@keyframes floatGarmentSubdued {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+}
+
+/* Sweeping Laser Scan Line on Cards */
+.radiant-app .laser-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #ff2a85, transparent);
+  box-shadow: 0 0 15px #00f0ff;
+  pointer-events: none;
+  animation: laserScanLine 3.5s infinite linear;
+}
+
+@keyframes laserScanLine {
+  0% { top: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Floating HUD Badges on Cards */
+.radiant-app .float-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(14, 10, 32, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  clip-path: polygon(5px 0%, 100% 0%, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0% 100%, 0% 5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  z-index: 15;
+}
+
+.radiant-app .float-badge.badge-top {
+  top: 12px;
+  left: 12px;
+}
+
+.radiant-app .float-badge.badge-bottom {
+  bottom: 12px;
+  right: 12px;
+  border-color: rgba(255, 42, 133, 0.4);
+  color: var(--anime-magenta);
+}
+
+.radiant-app .dot-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--anime-cyan);
+  box-shadow: 0 0 8px var(--anime-cyan);
+  border-radius: 50%;
+  animation: radarPulse 1.5s infinite;
+}
+
+.radiant-app .dot-pulse.magenta {
+  background: var(--anime-magenta);
+  box-shadow: 0 0 8px var(--anime-magenta);
+}
+
+/* Overdrive Neon Glow on Stage & Ambience */
+.radiant-app .glow-overdrive {
+  border-color: var(--anime-cyan) !important;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.6), 0 0 80px rgba(255, 42, 133, 0.4) !important;
+}
+
+.radiant-app .aura-overdrive {
+  background: radial-gradient(circle at 60% 40%, rgba(0, 240, 255, 0.25) 0%, rgba(255, 42, 133, 0.2) 40%, transparent 75%) !important;
+}
+
+/* Floating Bottom HUD Ticker */
+.radiant-app .floating-hud-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.radiant-app .hud-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.radiant-app .hud-title {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--anime-cyan);
+  letter-spacing: 0.1em;
+}
+
+.radiant-app .hud-val {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.radiant-app .hud-waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.radiant-app .wave-bar {
+  width: 3px;
+  background: var(--anime-cyan);
+  border-radius: 1px;
+}
+
+.radiant-app .w1 { height: 40%; animation: eqJump 1.1s infinite ease-in-out; }
+.radiant-app .w2 { height: 85%; animation: eqJump 0.7s infinite ease-in-out 0.2s; }
+.radiant-app .w3 { height: 60%; animation: eqJump 1.3s infinite ease-in-out 0.4s; }
+.radiant-app .w4 { height: 100%; animation: eqJump 0.9s infinite ease-in-out 0.1s; }
+.radiant-app .w5 { height: 35%; animation: eqJump 1.2s infinite ease-in-out 0.3s; }
+
+/* Marquee Cyber Ticker */
+.radiant-app .brand-ticker-bar {
+  background: linear-gradient(90deg, #100b28, #180f3a);
+  border-top: 1px solid rgba(0, 240, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 42, 133, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  padding: 0.5rem 0;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.radiant-app .ticker-item {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--anime-cyan);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+/* ── 7. Category Pills with Minimal Badges ──────────────────────────────── */
+.radiant-app .category-pills {
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.radiant-app .category-pill {
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: rgba(230, 225, 245, 0.85);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.95rem;
+  clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
+  border-radius: 0;
+  transition: all var(--transition-fast);
+}
+
+.radiant-app .category-pill:hover {
+  border-color: var(--anime-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.radiant-app .category-pill--active {
+  background: var(--gradient-vapor);
+  color: #06040d;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6), 0 0 35px rgba(255, 42, 133, 0.4);
+}
+
+/* ── 8. Full-Width Catalog & Dynamic Controls Bar ────────────────────────── */
+.radiant-app .full-screen-catalog {
+  width: 100%;
+  padding: 2.25rem 0 1.25rem;
+}
+
+.radiant-app .catalog-full-container {
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Quick Filter Tags Strip */
+.radiant-app .quick-filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.radiant-app .strip-title {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--anime-cyan);
+  letter-spacing: 0.12em;
+}
+
+.radiant-app .quick-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: rgba(230, 225, 245, 0.85);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  clip-path: polygon(5px 0%, 100% 0%, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0% 100%, 0% 5px);
+}
+
+.radiant-app .quick-tag-chip:hover {
+  border-color: var(--anime-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.radiant-app .quick-tag-chip.active {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: var(--anime-cyan);
+  color: var(--anime-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+/* Catalog Controls Bar */
+.radiant-app .catalog-controls-bar {
+  background: rgba(18, 14, 38, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.28);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
+  clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.35rem;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+/* View Mode Toggles */
+.radiant-app .view-mode-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(10, 6, 22, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.radiant-app .view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: 3px;
+}
+
+.radiant-app .view-toggle-btn:hover {
+  color: #ffffff;
+}
+
+.radiant-app .view-toggle-btn.active {
+  background: var(--anime-cyan);
+  color: #000000;
+  box-shadow: 0 0 10px var(--anime-cyan);
+}
+
+/* Dynamic Grid Layouts */
+.radiant-app .products-grid-tactical {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.85rem;
+}
+
+.radiant-app .products-grid-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.75rem;
+}
+
+/* ── 9. Product Cards — Holographic Mecha Techwear ──────────────────────── */
+.radiant-app .mecha-product-card {
+  background: rgba(16, 12, 34, 0.92);
+  border: 1px solid rgba(0, 240, 255, 0.22);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 240, 255, 0.08);
+  clip-path: polygon(14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px);
+  border-radius: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 4 Corner Accents on Card */
+.radiant-app .card-cyber-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(0, 240, 255, 0.4);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 15;
+  transition: all 0.3s ease;
+}
+
+.radiant-app .corner-tl { top: 3px; left: 3px; border-width: 2px 0 0 2px; }
+.radiant-app .corner-tr { top: 3px; right: 3px; border-width: 2px 2px 0 0; }
+.radiant-app .corner-bl { bottom: 3px; left: 3px; border-width: 0 0 2px 2px; }
+.radiant-app .corner-br { bottom: 3px; right: 3px; border-width: 0 2px 2px 0; }
+
+.radiant-app .mecha-product-card:hover .card-cyber-corner {
+  border-color: var(--anime-magenta);
+  width: 14px;
+  height: 14px;
+}
+
+/* Card Laser Shimmer Light Streak on Hover */
+.radiant-app .card-laser-shimmer {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(0, 240, 255, 0.3), rgba(255, 42, 133, 0.35), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 18;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.radiant-app .mecha-product-card:hover .card-laser-shimmer {
+  opacity: 1;
+  animation: laserShimmerSweep 1s forwards ease-out;
+}
+
+@keyframes laserShimmerSweep {
+  0% { left: -150%; }
+  100% { left: 220%; }
+}
+
+.radiant-app .mecha-product-card:hover {
+  border-color: var(--anime-cyan);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), 0 0 60px rgba(255, 42, 133, 0.25);
+  transform: translateY(-7px) scale(1.015);
+}
+
+.radiant-app .card-img-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 240, 255, 0.06) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.radiant-app .product-card:hover .product-image-wrap::after {
+  transform: rotate(-25deg) translateY(100%);
+}
+
+.radiant-app .product-title {
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.radiant-app .price-current {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--anime-gold);
+  text-shadow: 0 0 10px rgba(255, 209, 92, 0.45);
+}
+
+.radiant-app .badge-gold {
+  background: rgba(255, 42, 133, 0.15);
+  border: 1px solid var(--anime-magenta);
+  color: var(--anime-magenta);
+  box-shadow: 0 0 10px rgba(255, 42, 133, 0.4);
+}
+
+.radiant-app .badge-new {
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid var(--anime-cyan);
+  color: var(--anime-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.radiant-app .stock-alert-badge {
+  background: rgba(255, 42, 133, 0.2);
+  border: 1px solid var(--anime-magenta);
+  color: #ff559d;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+}
+
+/* ── 10. Lookbook Stage ─────────────────────────────────────────────────── */
+.radiant-app .lookbook-visual-stage {
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+  clip-path: polygon(14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px);
+  border-radius: 0;
+}
+
+.radiant-app .lookbook-tabs-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.radiant-app .lookbook-tab-btn {
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  color: var(--text-muted);
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+}
+
+.radiant-app .lookbook-tab-btn.active-look-tab {
+  background: var(--gradient-vapor);
+  color: #06040d;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.radiant-app .lookbook-pin-pulse {
+  background: var(--anime-cyan);
+  box-shadow: 0 0 15px var(--anime-cyan);
+}
+
+/* ── 11. Specifications & Pillars ───────────────────────────────────────── */
+.radiant-app .pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.radiant-app .pillar-card {
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+  border-radius: 0;
+  padding: 1.35rem 1.15rem;
+}
+
+.radiant-app .pillar-card:hover {
+  border-color: var(--anime-magenta);
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.35);
+  transform: translateY(-4px);
+}
+
+.radiant-app .pillar-icon-box {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: var(--anime-cyan);
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radiant-app .pillar-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+}
+
+.radiant-app .pillar-desc {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(230, 225, 245, 0.8);
+}
+
+/* ── 12. Reviews & VIP Newsletter ───────────────────────────────────────── */
+.radiant-app .press-quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.radiant-app .press-quote-card {
+  padding: 1rem 1.15rem;
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  border-radius: 0;
+}
+
+.radiant-app .testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.radiant-app .testimonial-card {
+  background: rgba(18, 14, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  border-radius: 0;
+  padding: 1.35rem 1.25rem;
+}
+
+.radiant-app .newsletter-card {
+  background: linear-gradient(135deg, rgba(16, 11, 36, 0.95), rgba(28, 18, 60, 0.95));
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.2), 0 0 80px rgba(255, 42, 133, 0.15);
+  clip-path: polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0% 16px);
+  border-radius: 0;
+  padding: 2.25rem 2rem;
+}
+
+.radiant-app .newsletter-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.radiant-app .vip-code {
+  background: var(--gradient-vapor);
+  color: #05030a;
+  font-family: var(--font-display);
+  font-weight: 900;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+  padding: 0.25rem 0.75rem;
+}
+
+/* ── 13. Footer ─────────────────────────────────────────────────────────── */
+.radiant-app .footer-section {
+  background: #05030c;
+  border-top: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
+  padding: 2.5rem 0 2rem;
+}
+
+.radiant-app .footer-col-title {
+  font-family: var(--font-display);
+  color: var(--anime-cyan);
+  letter-spacing: 0.1em;
+}
+
+.radiant-app .social-icon-btn {
+  background: rgba(18, 14, 38, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: var(--anime-cyan);
+}
+
+.radiant-app .social-icon-btn:hover {
+  background: var(--gradient-vapor);
+  color: #06040d;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+}
+
+/* ── 14. Dedicated Account Page — Cyber Mecha Terminal ──────────────────── */
+.account-page-wrapper {
+  background: #070510;
+  position: relative;
+}
+
+.account-page-wrapper .account-top-bar {
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+  background: rgba(14, 10, 28, 0.92);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.12);
+}
+
+.account-page-wrapper .btn-back-to-shop {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--anime-cyan);
+  color: var(--anime-cyan);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
+  border-radius: 0;
+}
+
+.account-page-wrapper .btn-back-to-shop:hover {
+  background: var(--gradient-vapor);
+  color: #06040d;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+}
+
+.account-page-wrapper .account-perks-showcase {
+  background: linear-gradient(135deg, rgba(18, 14, 38, 0.95), rgba(28, 18, 60, 0.95));
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.15);
+  clip-path: polygon(14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px);
+  border-radius: 0;
+}
+
+.account-page-wrapper .account-form-box {
+  background: rgba(18, 14, 38, 0.88);
+  border: 1px solid rgba(255, 42, 133, 0.3);
+  box-shadow: 0 0 35px rgba(255, 42, 133, 0.15);
+  clip-path: polygon(14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px);
+  border-radius: 0;
+}
+
+.account-page-wrapper .auth-mode-tab.active {
+  background: var(--gradient-vapor);
+  color: #06040d;
+  font-family: var(--font-display);
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+.account-page-wrapper .auth-input:focus {
+  border-color: var(--anime-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2), 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.account-page-wrapper .profile-hero-card {
+  background: linear-gradient(135deg, rgba(20, 15, 42, 0.95), rgba(30, 20, 65, 0.95));
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+  clip-path: polygon(14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px);
+  border-radius: 0;
+}
+
+.account-page-wrapper .profile-avatar-large {
+  border: 2px solid var(--anime-cyan);
+  background: linear-gradient(135deg, #1b1236, #090615);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.account-page-wrapper .profile-tab-btn.active {
+  background: var(--gradient-vapor);
+  color: #06040d;
+  font-family: var(--font-display);
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+/* ── 15. Telemetry & Mecha Spec Accents ──────────────────────────────────── */
+.radiant-app .mecha-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--anime-emerald);
+  box-shadow: 0 0 8px var(--anime-emerald);
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: mechaPulse 2s infinite ease-in-out;
+}
+
+@keyframes mechaPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.radiant-app .mecha-code-sub {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  color: rgba(0, 240, 255, 0.7);
+  letter-spacing: 0.12em;
+  margin-top: 0.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.radiant-app .pillar-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.radiant-app .pillar-spec-chip {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--anime-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.08em;
+}
+
+.radiant-app .telemetry-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  color: rgba(0, 240, 255, 0.8);
+  letter-spacing: 0.12em;
+  margin: 0.4rem 0;
+}
+
+.radiant-app .telemetry-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--anime-emerald);
+  box-shadow: 0 0 6px var(--anime-emerald);
+}
+
+/* ── 16. Mobile Cyber Sticky Dock ────────────────────────────────────────── */
+.mobile-cyber-dock {
+  display: none;
+}
+
+/* ── 17. Responsive Layout Breakpoints ───────────────────────────────────── */
+@media (max-width: 1200px) {
+  .radiant-app .hero-title {
+    font-size: 2.8rem;
+  }
+  .radiant-app .hero-stage-grid {
+    gap: 1.75rem;
+  }
+  .radiant-app .products-grid-tactical {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+  }
+  .radiant-app .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .radiant-app .hero-full-container,
+  .radiant-app .catalog-full-container {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .radiant-app .hero-stage-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .radiant-app .hero-visual-col {
+    order: -1;
+  }
+
+  .radiant-app .floating-stage-viewport {
+    height: 360px;
+  }
+
+  .radiant-app .floating-character-card {
+    height: 330px;
+    width: 76%;
+  }
+
+  .radiant-app .floating-character-card.card-subdued {
+    height: 260px;
+    width: 54%;
+  }
+
+  .radiant-app .floating-garment-card {
+    height: 240px;
+    width: 52%;
+  }
+
+  .radiant-app .floating-garment-card.card-focused {
+    height: 330px;
+    width: 80%;
+  }
+
+  .radiant-app .products-grid-tactical {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .radiant-app .products-grid-showcase {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .radiant-app .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .radiant-app .press-quotes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Perfected Mobile View (<= 768px) */
+@media (max-width: 768px) {
+  .radiant-app {
+    padding-bottom: 74px; /* clearance for sticky dock */
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Compact Hero Layout */
+  .radiant-app .full-screen-hero {
+    min-height: auto;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .radiant-app .hero-full-container {
+    padding: 0 0.85rem;
+  }
+
+  .radiant-app .hero-stage-grid {
+    gap: 0.85rem;
+  }
+
+  .radiant-app .floating-showcase-container {
+    padding: 0.65rem;
+    clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+  }
+
+  .radiant-app .floating-controls-bar {
+    gap: 0.35rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .radiant-app .mode-btn,
+  .radiant-app .overdrive-btn {
+    padding: 0.22rem 0.48rem;
+    font-size: 0.6rem;
+    gap: 0.25rem;
+  }
+
+  .radiant-app .floating-stage-viewport {
+    height: 270px;
+    overflow: hidden;
+  }
+
+  .radiant-app .floating-character-card {
+    width: 78%;
+    height: 245px;
+    top: 8px;
+    left: 2%;
+  }
+
+  .radiant-app .floating-character-card.card-subdued {
+    width: 50%;
+    height: 180px;
+    top: 30px;
+    left: 0;
+  }
+
+  .radiant-app .floating-garment-card {
+    width: 52%;
+    height: 180px;
+    bottom: 8px;
+    right: 2%;
+  }
+
+  .radiant-app .floating-garment-card.card-focused {
+    width: 78%;
+    height: 245px;
+    top: 8px;
+    right: 2%;
+  }
+
+  .radiant-app .float-badge {
+    font-size: 0.55rem;
+    padding: 0.2rem 0.45rem;
+    gap: 0.3rem;
+  }
+
+  .radiant-app .floating-hud-footer {
+    display: none;
+  }
+
+  .radiant-app .hero-badge-pill {
+    font-size: 0.62rem;
+    padding: 0.25rem 0.65rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .radiant-app .hero-title {
+    font-size: 1.85rem;
+    line-height: 1.15;
+    margin-bottom: 0.45rem;
+  }
+
+  .radiant-app .hero-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    margin-bottom: 0.75rem;
+    padding-left: 0.65rem;
+  }
+
+  .radiant-app .hero-quick-chips {
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .radiant-app .quick-chip-label {
+    font-size: 0.6rem;
+  }
+
+  .radiant-app .hero-chip-btn {
+    font-size: 0.62rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .radiant-app .hero-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    width: 100%;
+  }
+
+  .radiant-app .hero-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 0.65rem 0.6rem;
+    font-size: 0.72rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .radiant-app .hero-metrics {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.85rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .radiant-app .metric-item {
+    font-size: 0.64rem;
+    gap: 0.35rem;
+  }
+
+  .radiant-app .brand-ticker-bar {
+    margin-top: 0.65rem;
+    padding: 0.35rem 0;
+  }
+
+  .radiant-app .ticker-item {
+    font-size: 0.68rem;
+  }
+
+  /* Catalog Controls on Mobile */
+  .radiant-app .full-screen-catalog {
+    padding: 1.15rem 0 0.65rem;
+  }
+
+  .radiant-app .catalog-full-container {
+    padding: 0 0.85rem;
+  }
+
+  .radiant-app .section-header {
+    margin-bottom: 0.65rem;
+  }
+
+  .radiant-app .section-title {
+    font-size: 1.55rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .radiant-app .section-description {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .radiant-app .category-pills {
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.25rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.4rem;
+  }
+
+  .radiant-app .category-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .radiant-app .category-pill {
+    white-space: nowrap;
+    font-size: 0.68rem;
+    padding: 0.35rem 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .radiant-app .quick-filter-strip {
+    margin-bottom: 0.65rem;
+    gap: 0.35rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .radiant-app .quick-filter-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .radiant-app .quick-tag-chip {
+    white-space: nowrap;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.65rem;
+    flex-shrink: 0;
+  }
+
+  .radiant-app .strip-title {
+    display: none;
+  }
+
+  .radiant-app .catalog-controls-bar {
+    margin-bottom: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .radiant-app .results-count-group {
+    font-size: 0.72rem;
+  }
+
+  /* 2-Column Product Grid for Phone Screens */
+  .radiant-app .products-grid-tactical,
+  .radiant-app .products-grid-showcase {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem;
+  }
+
+  .radiant-app .mecha-product-card {
+    clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  }
+
+  .radiant-app .product-image-wrap {
+    height: 175px;
+  }
+
+  .radiant-app .product-info-wrap {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .radiant-app .product-title {
+    font-size: 0.8rem;
+    line-height: 1.25;
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .radiant-app .price-current {
+    font-size: 0.92rem;
+  }
+
+  .radiant-app .card-hover-action {
+    position: static;
+    transform: none;
+    padding: 0.35rem 0 0 0;
+    background: transparent;
+  }
+
+  .radiant-app .quick-add-btn {
+    padding: 0.4rem 0.45rem;
+    font-size: 0.64rem;
+    border-radius: 2px;
+  }
+
+  /* Lookbook on Mobile */
+  .radiant-app .lookbook-section {
+    padding: 1.15rem 0;
+  }
+
+  .radiant-app .lookbook-tabs-row {
+    margin-bottom: 0.75rem;
+    gap: 0.35rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .radiant-app .lookbook-tabs-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .radiant-app .lookbook-tab-btn {
+    flex-shrink: 0;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.68rem;
+  }
+
+  .radiant-app .lookbook-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .radiant-app .lookbook-visual-stage {
+    min-height: 250px;
+    max-height: 310px;
+  }
+
+  /* Specifications & Pillars on Mobile (2x2 Grid) */
+  .radiant-app .sustainability-section {
+    padding: 1.15rem 0;
+  }
+
+  .radiant-app .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+  }
+
+  .radiant-app .pillar-card {
+    padding: 0.85rem 0.75rem;
+    clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  }
+
+  .radiant-app .pillar-icon-box {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 0.45rem;
+  }
+
+  .radiant-app .pillar-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .radiant-app .pillar-desc {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  /* Reviews on Mobile */
+  .radiant-app .reviews-section {
+    padding: 1.15rem 0 0.85rem;
+  }
+
+  .radiant-app .press-quotes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .radiant-app .press-quote-card {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .radiant-app .press-brand-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .radiant-app .press-quote-text {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .radiant-app .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .radiant-app .testimonial-card {
+    padding: 0.85rem;
+  }
+
+  .radiant-app .testimonial-comment {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-bottom: 0.85rem;
+  }
+
+  /* Newsletter on Mobile */
+  .radiant-app .newsletter-section {
+    padding: 1rem 0 1.15rem;
+  }
+
+  .radiant-app .newsletter-card {
+    padding: 1.35rem 1rem;
+    clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+  }
+
+  .radiant-app .newsletter-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .radiant-app .newsletter-desc {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    margin-bottom: 0.85rem;
+  }
+
+  .radiant-app .newsletter-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .radiant-app .newsletter-input-wrap {
+    width: 100%;
+  }
+
+  .radiant-app .newsletter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer on Mobile */
+  .radiant-app .footer-section {
+    padding: 1.75rem 0 1.25rem;
+  }
+
+  /* Mobile Bottom Sticky Cyber Dock */
+  .mobile-cyber-dock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(10, 6, 24, 0.96);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.2);
+    z-index: 9999;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+
+  .mobile-cyber-dock .dock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: rgba(230, 225, 245, 0.7);
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    gap: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+  }
+
+  .mobile-cyber-dock .dock-item:active,
+  .mobile-cyber-dock .dock-item:hover {
+    color: var(--anime-cyan);
+    transform: translateY(-2px);
+  }
+
+  .mobile-cyber-dock .dock-item-cart {
+    color: var(--anime-magenta);
+  }
+
+  .mobile-cyber-dock .dock-icon-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-cyber-dock .dock-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: var(--anime-cyan);
+    color: #000000;
+    font-size: 0.6rem;
+    font-weight: 900;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 8px var(--anime-cyan);
+  }
+
+  .mobile-cyber-dock .dock-badge-cart {
+    background: var(--anime-magenta);
+    color: #ffffff;
+    box-shadow: 0 0 8px var(--anime-magenta);
+  }
+}
+
+@media (max-width: 480px) {
+  .radiant-app .hero-title {
+    font-size: 1.65rem;
+  }
+
+  .radiant-app .floating-stage-viewport {
+    height: 250px;
+  }
+
+  .radiant-app .floating-character-card {
+    height: 225px;
+  }
+
+  .radiant-app .floating-garment-card.card-focused {
+    height: 225px;
+  }
+
+  .radiant-app .hero-actions {
+    flex-direction: column;
+  }
+}
+

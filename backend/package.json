@@ -1,0 +1,22 @@
+{
+  "name": "radiantwears-backend",
+  "version": "1.0.0",
+  "description": "Radiant Wears Luxury Apparel Backend API",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --watch --env-file=.env server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.11.0",
+    "cors": "^2.8.6",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.0"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true
+  }
+}

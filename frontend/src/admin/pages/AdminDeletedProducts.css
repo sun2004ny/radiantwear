@@ -1,0 +1,169 @@
+@import './AdminProducts.css';
+
+/* ============================================================
+   ADMIN DELETED PRODUCTS ARCHIVE PAGE STYLES
+   ============================================================ */
+
+.admin-deleted-page {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.text-rose {
+  color: #fb7185;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.btn-back-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #b0b0be;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn-back-catalog:hover {
+  border-color: rgba(229, 184, 105, 0.4);
+  color: #e5b869;
+}
+
+.btn-refresh-archive {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #b0b0be;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-refresh-archive:hover:not(:disabled) {
+  border-color: rgba(229, 184, 105, 0.4);
+  color: #e5b869;
+}
+
+/* Card modifications in Deleted Products */
+.admin-product-card--deleted {
+  background: linear-gradient(168deg, #1f1b22 0%, #151319 100%);
+  border: 1px solid rgba(244, 63, 94, 0.6);
+  border-top: 2px solid #fb7185;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(244, 63, 94, 0.2);
+}
+.admin-product-card--deleted:hover {
+  transform: translateY(-3px);
+  border-color: #fb7185;
+  border-top-color: #fda4af;
+  box-shadow: 0 20px 42px -6px rgba(0, 0, 0, 0.88), 0 0 28px rgba(244, 63, 94, 0.35);
+}
+
+.grayscale-preview {
+  filter: grayscale(40%) brightness(0.85);
+  transition: filter 0.3s ease;
+}
+.admin-product-card--deleted:hover .grayscale-preview {
+  filter: grayscale(0%) brightness(1);
+}
+
+.deleted-tag-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(244, 63, 94, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Repost button */
+.admin-btn-repost {
+  flex: 1;
+  height: 29px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.12) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  border-radius: 6px;
+  color: #6ee7b7;
+  font-family: inherit;
+  font-size: 0.73rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  padding: 0 0.5rem;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+.admin-btn-repost:hover:not(:disabled) {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #10b981;
+  color: #03251a;
+  font-weight: 700;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.admin-btn-repost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.text-rose-badge {
+  background: rgba(244, 63, 94, 0.15) !important;
+  border-color: rgba(244, 63, 94, 0.35) !important;
+  color: #fb7185 !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* Always-on active style for view & delete buttons */
+.admin-deleted-page .admin-btn-view {
+  background: rgba(229, 184, 105, 0.12);
+  border: 1px solid rgba(229, 184, 105, 0.4);
+  color: #e5b869;
+}
+.admin-deleted-page .admin-btn-view:hover {
+  background: rgba(229, 184, 105, 0.24);
+  border-color: #e5b869;
+  color: #fce7b2;
+  box-shadow: 0 0 10px rgba(229, 184, 105, 0.3);
+  transform: translateY(-1px);
+}
+
+.admin-deleted-page .admin-btn-delete {
+  background: rgba(244, 63, 94, 0.14);
+  border: 1px solid rgba(244, 63, 94, 0.45);
+  color: #fb7185;
+}
+.admin-deleted-page .admin-btn-delete:hover:not(:disabled) {
+  background: rgba(244, 63, 94, 0.25);
+  border-color: #fb7185;
+  color: #fda4af;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.35);
+  transform: translateY(-1px);
+}
