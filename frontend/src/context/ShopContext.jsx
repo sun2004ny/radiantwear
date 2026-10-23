@@ -39,29 +39,15 @@ export const ShopProvider = ({ children }) => {
     refreshProducts();
   }, [refreshProducts]);
 
-  // Theme State
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('rw_theme') || 'dark';
-  });
+  // Theme State — permanently locked to dark mode
+  const theme = 'dark';
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('rw_theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('rw_theme', 'dark');
+  }, []);
 
-  // Chroma RGB Gaming Theme State
-  const [chromaMode, setChromaMode] = useState(() => {
-    return localStorage.getItem('rw_chroma') || 'cyan'; // 'cyan' | 'green' | 'purple' | 'red' | 'spectrum'
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-chroma', chromaMode);
-    localStorage.setItem('rw_chroma', chromaMode);
-  }, [chromaMode]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  const toggleTheme = () => {};
 
   // Currency State
   const [currency, setCurrency] = useState('INR');

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
-import { CURRENCIES } from '../data/products';
 import { 
   ArrowLeft, 
   User, 
@@ -19,9 +18,7 @@ import {
   CheckCircle2,
   AlertCircle,
   Copy,
-  Check,
-  Sun,
-  Moon
+  Check
 } from 'lucide-react';
 
 export default function AccountPage() {
@@ -35,11 +32,7 @@ export default function AccountPage() {
     customerLogout,
     userOrders,
     isUserLoading,
-    formatPrice,
-    theme,
-    toggleTheme,
-    currency,
-    setCurrency
+    formatPrice
   } = useShop();
 
   // Mode: 'login' | 'register'
@@ -147,32 +140,6 @@ export default function AccountPage() {
               <ArrowLeft size={16} />
               <span>RETURN TO STOREFRONT</span>
             </Link>
-
-            {/* Currency Selector */}
-            <div className="currency-selector-wrapper">
-              <select 
-                value={currency} 
-                onChange={(e) => setCurrency(e.target.value)}
-                className="currency-select"
-                aria-label="Select Currency"
-              >
-                {Object.keys(CURRENCIES).map((cur) => (
-                  <option key={cur} value={cur}>
-                    {cur} ({CURRENCIES[cur].symbol})
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Theme Toggle */}
-            <button 
-              className="action-btn theme-toggle-btn"
-              onClick={toggleTheme}
-              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
-            </button>
           </div>
         </div>
       </header>
