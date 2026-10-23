@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
+import apiFetch from '../../lib/api';
 
 const AdminContext = createContext();
 
@@ -37,7 +38,7 @@ export const AdminProvider = ({ children }) => {
   // Use this for all /api/admin/* calls so the JWT is always attached.
   const authFetch = useCallback(async (url, options = {}) => {
     const currentToken = sessionStorage.getItem(TOKEN_KEY);
-    return fetch(url, {
+    return apiFetch(url, {
       ...options,
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ export const AdminProvider = ({ children }) => {
     setLoginError('');
     setIsLoggingIn(true);
     try {
-      const res = await fetch('/api/admin/login', {
+      const res = await apiFetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

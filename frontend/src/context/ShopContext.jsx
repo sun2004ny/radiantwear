@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { CURRENCIES, PROMO_CODES } from '../data/products';
+import apiFetch from '../lib/api';
 
 const ShopContext = createContext();
 
@@ -21,7 +22,7 @@ export const ShopProvider = ({ children }) => {
     setProductsLoading(true);
     setProductsError(null);
     try {
-      const res = await fetch('/api/products');
+      const res = await apiFetch('/api/products');
       if (!res.ok) throw new Error('Failed to load products from database');
       const data = await res.json();
       setProducts(data.products || []);
@@ -158,7 +159,7 @@ export const ShopProvider = ({ children }) => {
 
     try {
       setIsUserLoading(true);
-      const res = await fetch('/api/auth/me', {
+      const res = await apiFetch('/api/auth/me', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -210,7 +211,7 @@ export const ShopProvider = ({ children }) => {
   const customerLogin = useCallback(async (email, password) => {
     setIsUserLoading(true);
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await apiFetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -236,7 +237,7 @@ export const ShopProvider = ({ children }) => {
   const customerRegister = useCallback(async (name, email, password) => {
     setIsUserLoading(true);
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await apiFetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
