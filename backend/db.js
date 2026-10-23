@@ -1,6 +1,16 @@
+import fs from 'fs';
 import pkg from 'pg';
 import bcrypt from 'bcrypt';
 import { PRODUCTS } from './data/products.js';
+
+// Auto-load .env in local development if present
+if (!process.env.DATABASE_URL && fs.existsSync('.env')) {
+  try {
+    process.loadEnvFile?.('.env');
+  } catch (err) {
+    // ignore
+  }
+}
 
 const { Pool } = pkg;
 

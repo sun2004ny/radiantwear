@@ -1,3 +1,14 @@
+import fs from 'fs';
+
+// Auto-load .env in local development if present
+if (!process.env.DATABASE_URL && fs.existsSync('.env')) {
+  try {
+    process.loadEnvFile?.('.env');
+  } catch (err) {
+    // ignore
+  }
+}
+
 import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';

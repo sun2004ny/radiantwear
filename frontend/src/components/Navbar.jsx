@@ -5,7 +5,6 @@ import {
   ShoppingBag, 
   Heart, 
   Search, 
-  Menu, 
   X,
   User,
   Zap
@@ -30,7 +29,6 @@ export const Navbar = () => {
 
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,38 +41,12 @@ export const Navbar = () => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setIsMobileMenuOpen(false);
         setIsSearchOpen(false);
       }
     };
-    const handleResize = () => {
-      if (window.innerWidth >= 1200) {
-        setIsMobileMenuOpen(false);
-      }
-    };
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
-  const navLinks = [
-    { label: 'Loadouts', href: '#catalog', category: 'all' },
-    { label: 'Outerwear', href: '#catalog', category: 'outerwear' },
-    { label: 'Hoodies', href: '#catalog', category: 'hoodies' },
-    { label: 'Battlefield', href: '#lookbook' },
-    { label: 'Hardware Specs', href: '#sustainability' },
-    { label: 'Clan Logs', href: '#reviews' }
-  ];
-
-  const handleNavClick = (link) => {
-    if (link.category) {
-      setSelectedCategory(link.category);
-    }
-    setIsMobileMenuOpen(false);
-  };
 
   const getInitials = (name) => {
     if (!name) return 'RW';
@@ -90,14 +62,6 @@ export const Navbar = () => {
       {/* Main Glass Navbar */}
       <nav className={`main-navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
         <div className="nav-container">
-          {/* Mobile Menu Button */}
-          <button 
-            className="mobile-toggle-btn"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
 
           {/* Brand Logo */}
           <a href="#" className="brand-logo">
@@ -216,58 +180,7 @@ export const Navbar = () => {
           </div>
         )}
 
-        {/* Mobile Menu Backdrop */}
-        {isMobileMenuOpen && (
-          <div 
-            className="mobile-menu-backdrop animate-fade-in"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-        )}
 
-        {/* Mobile Dropdown Navigation */}
-        {isMobileMenuOpen && (
-          <div className="mobile-menu-drawer animate-fade-in">
-            <div className="mobile-menu-header">
-              <span className="mobile-menu-title">// NAVIGATION MATRIX</span>
-              <button 
-                className="mobile-menu-close-btn"
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="mobile-links-list">
-              {navLinks.map((link, idx) => (
-                <a
-                  key={idx}
-                  href={link.href}
-                  className="mobile-nav-link"
-                  onClick={() => handleNavClick(link)}
-                >
-                  <span className="mobile-link-text">{link.label}</span>
-                  <span className="mobile-link-index">0{idx + 1} //</span>
-                </a>
-              ))}
-            </div>
-
-            <div className="mobile-menu-footer">
-              <div className="mobile-drawer-actions">
-                <button 
-                  className="mobile-drawer-btn mobile-auth-btn" 
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    navigate(currentUser ? '/account' : '/account?mode=login');
-                  }}
-                >
-                  <User size={16} />
-                  <span>{currentUser ? `PROFILE (${currentUser.name.split(' ')[0]})` : 'SIGN IN / REGISTER'}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </nav>
 
       {/* Mobile Sticky Gaming HUD Dock */}
